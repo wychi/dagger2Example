@@ -15,10 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.cleancode.database.DBHelper;
+import com.example.cleancode.database.DBHelper2;
+import com.example.cleancode.database.DBHelper3;
+import com.example.cleancode.database.DBHelper4;
 import com.example.cleancode.di.components.DaggerActivityComponent;
 import com.example.cleancode.di.modules.ActivityModule;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +30,20 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
     @Inject
     DBHelper mHelper;
+
+    @Inject
+    DBHelper2 mHelper2;
+
+    @Inject
+    DBHelper3 mHelper3;
+
+    @Inject
+    @Named("sdcard")
+    DBHelper4 mHelper4;
+
+    @Inject
+    @Named("appdata")
+    DBHelper4 mHelper41;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
