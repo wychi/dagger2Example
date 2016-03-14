@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
                 .inject(this);
 
         if(mHelper != null) {
-            Log.d(TAG, "mHelper injected ID=" + mHelper.hashCode());
+            mHelper.dump();
         }
 
         setContentView(R.layout.activity_main);

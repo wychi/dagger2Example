@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.cleancode.MyApplication;
 import com.example.cleancode.database.DBHelper;
+import com.example.cleancode.di.scopes.ForApplication;
 
 import javax.inject.Singleton;
 
@@ -21,12 +22,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
+    @ForApplication
     Context provideContext() {
         return mApplication;
-    }
-
-    @Provides
-    DBHelper provideDBHelper(Context context) {
-        return new DBHelper(context);
     }
 }
