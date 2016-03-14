@@ -37,4 +37,11 @@ public class ActivityModule {
         return new DBHelper4(context, "/data/data");
     }
 
+    @Provides
+    @Named("singleton")
+    @PerActivity
+    DBHelper4 provideDBHelper4_3(Context context) {
+        return new DBHelper4(context, "/singleton");
+    }
+
 }

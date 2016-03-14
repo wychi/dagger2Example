@@ -15,4 +15,8 @@ public class DBHelper4 {
     public DBHelper4(Context context, String defaultPath) {
         Log.d(TAG, "DBHelper4 injected ID=" + hashCode() + " , context=" + context + " path=" + defaultPath);
     }
+
+    public void dump() {
+        Log.d(TAG, "[dump] DBHelper4 injected ID=" + hashCode());
+    }
 }

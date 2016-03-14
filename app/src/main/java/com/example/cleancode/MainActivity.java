@@ -45,6 +45,18 @@ public class MainActivity extends AppCompatActivity
     @Named("appdata")
     DBHelper4 mHelper41;
 
+    @Inject
+    @Named("appdata")
+    DBHelper4 mHelper42;
+
+    @Inject
+    @Named("singleton")
+    DBHelper4 mHelper43;
+
+    @Inject
+    @Named("singleton")
+    DBHelper4 mHelper44;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +70,9 @@ public class MainActivity extends AppCompatActivity
         if(mHelper != null) {
             mHelper.dump();
         }
+
+        mHelper43.dump();
+        mHelper44.dump();
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
