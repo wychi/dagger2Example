@@ -1,11 +1,13 @@
 package com.example.cleancode.di.components;
 
 import android.content.Context;
+import android.os.Handler;
 
 import com.example.cleancode.MyApplication;
 import com.example.cleancode.di.modules.ApplicationModule;
 import com.example.cleancode.di.scopes.ForApplication;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -20,4 +22,10 @@ public interface ApplicationComponent {
 
     @ForApplication
     Context appContext();
+
+    @Named("io")
+    Handler provideBGHandler();
+
+    @Named("ui")
+    Handler provideUIHandler();
 }

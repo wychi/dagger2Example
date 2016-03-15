@@ -20,6 +20,7 @@ import com.example.cleancode.database.DBHelper3;
 import com.example.cleancode.database.DBHelper4;
 import com.example.cleancode.di.components.DaggerActivityComponent;
 import com.example.cleancode.di.modules.ActivityModule;
+import com.example.cleancode.media.MediaQuery;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -57,6 +58,9 @@ public class MainActivity extends AppCompatActivity
     @Named("singleton")
     DBHelper4 mHelper44;
 
+    @Inject
+    MediaQuery mMediaQuery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +77,8 @@ public class MainActivity extends AppCompatActivity
 
         mHelper43.dump();
         mHelper44.dump();
+
+        mMediaQuery.getThumbnails();
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
