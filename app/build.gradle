@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 def cfg = rootProject.ext.configuration
 def libs = rootProject.ext.libraries;
@@ -18,7 +17,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -30,10 +29,5 @@ dependencies {
     compile "com.android.support:appcompat-v7:${libs.supportVersion}"
     compile "com.android.support:design:${libs.supportVersion}"
 
-    // dagger
-    apt "com.google.dagger:dagger-compiler:${libs.dagger}"
-    compile "com.google.dagger:dagger:${libs.dagger}"
-    // remove if dagger change to 2.1
-    provided 'javax.annotation:jsr250-api:1.0'
 
 }

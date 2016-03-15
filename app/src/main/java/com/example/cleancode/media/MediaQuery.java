@@ -8,12 +8,6 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.example.cleancode.di.scopes.ForApplication;
-
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * Created by user on 16/3/15.
@@ -24,9 +18,7 @@ public class MediaQuery {
     final Context mContext;
     final Handler mHandler;
 
-    @Inject
-    public MediaQuery(Context context,
-                      @Named("io") Handler handler) {
+    public MediaQuery(Context context, Handler handler) {
         mContext = context;
         mHandler = handler;
     }

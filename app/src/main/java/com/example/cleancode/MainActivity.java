@@ -1,6 +1,7 @@
 package com.example.cleancode;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -9,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,66 +18,41 @@ import com.example.cleancode.database.DBHelper;
 import com.example.cleancode.database.DBHelper2;
 import com.example.cleancode.database.DBHelper3;
 import com.example.cleancode.database.DBHelper4;
-import com.example.cleancode.di.components.DaggerActivityComponent;
-import com.example.cleancode.di.modules.ActivityModule;
 import com.example.cleancode.media.MediaQuery;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
-    @Inject
+
     DBHelper mHelper;
-
-    @Inject
     DBHelper2 mHelper2;
-
-    @Inject
     DBHelper3 mHelper3;
-
-    @Inject
-    @Named("sdcard")
     DBHelper4 mHelper4;
-
-    @Inject
-    @Named("appdata")
     DBHelper4 mHelper41;
-
-    @Inject
-    @Named("appdata")
     DBHelper4 mHelper42;
-
-    @Inject
-    @Named("singleton")
     DBHelper4 mHelper43;
-
-    @Inject
-    @Named("singleton")
     DBHelper4 mHelper44;
-
-    @Inject
     MediaQuery mMediaQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DaggerActivityComponent.builder()
-                .applicationComponent(((MyApplication)getApplication()).component())
-                .activityModule(new ActivityModule(this))
-                .build()
-                .inject(this);
+        mHelper = new DBHelper();
+        mHelper.setAppContext(getApplicationContext());
+        mHelper.setActivityContext(this);
+        mHelper.dump();
 
-        if(mHelper != null) {
-            mHelper.dump();
-        }
+        mHelper2 = new DBHelper2(getApplicationContext());
+        mHelper3 = new DBHelper3(this);
+        mHelper4 = new DBHelper4(this, "sdcard");
+        mHelper41 = new DBHelper4(this, "appdata");
+        mHelper42 = new DBHelper4(this, "appdata");
+        mHelper43 = DBHelper4.getInstance(this);
+        mHelper44 = DBHelper4.getInstance(this);
 
-        mHelper43.dump();
-        mHelper44.dump();
-
+        mMediaQuery = new MediaQuery(this, new Handler());
         mMediaQuery.getThumbnails();
 
         setContentView(R.layout.activity_main);
